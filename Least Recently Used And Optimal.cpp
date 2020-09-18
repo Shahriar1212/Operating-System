@@ -135,6 +135,32 @@ int main()
 
 
 /**
-7 0 1 2 0 3 0 4 2 3 0 3 0 3 2 1 2 0 1 7 0 1
+8
+20
+7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1
+3
 */
+
+
+
+
+
+/**
+Number of pages: 8
+Number of Page References: 20
+Reference String: 7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1
+Number of Memory Page Frame: 3
+
+===============Optimal Page Replacement Algorithm==============
+Number of page fault using Optimal Page replacement Algorithm: 9
+Page Fault Rate: 45%
+
+=========Least Recently Used Page Replacement Algorithm=========
+Number of page fault using Least Recently Used Page replacement Algorithm: 12
+Page Fault Rate: 60%
+
+
+Process returned 0 (0x0)   execution time : 11.107 s
+Press any key to continue.
+**/
 
