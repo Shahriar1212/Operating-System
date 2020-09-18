@@ -43,13 +43,13 @@ int bestFit()
 {
     for(int i=0; i<requestNumber; i++)
     {
-        int minn = INT_MAX;
+        int maxx = INT_MAX;
         int index = -1;
         for(int j=0; j<holeNumber; j++)
         {
-            if(hole[j].second >= request[i] && hole[j].second<minn)
+            if(hole[j].second >= request[i] && hole[j].second<maxx)
             {
-                minn = hole[j].second;
+                maxx = hole[j].second;
                 index = j;
             }
         }
