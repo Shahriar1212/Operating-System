@@ -1,3 +1,7 @@
+/**
+        Memory Management Of an OS
+        Best Fit Algorithm
+**/
 #include <bits/stdc++.h>
 #include <utility>
 using namespace std;
@@ -7,6 +11,7 @@ int requestNumber;
 int request[100];
 int totalFragmentation= 0;
 pair <string, int> hole[100];
+bool isFailed = false;
 
 
 string int_to_str(int x)
@@ -41,8 +46,17 @@ void input()
 
 int bestFit()
 {
+
     for(int i=0; i<requestNumber; i++)
     {
+        if(isFailed)
+        {
+            for(int i=0; i<holeNumber; i++)
+            {
+                totalFragmentation += hole[i].second;
+            }
+            return totalFragmentation;
+        }
         int maxx = INT_MAX;
         int index = -1;
         for(int j=0; j<holeNumber; j++)
@@ -55,9 +69,10 @@ int bestFit()
         }
         if(index==-1)
         {
+            isFailed = true;
             printf("[-] %d is failed to serve\n",request[i]);
-            totalFragmentation+=request[i];
-            printf("=====================================\n");
+            printf("Quiting Simulation\n");
+            printf("Calculating External Fragmentation\n");
         }
         if(index != -1)
         {
