@@ -1,8 +1,7 @@
 /**
         Memory Management Of an OS
-        Worst Fit Algorithm
+        First Fit Algorithm
 **/
-
 #include <bits/stdc++.h>
 #include <utility>
 using namespace std;
@@ -13,6 +12,7 @@ int request[100];
 int totalFragmentation= 0;
 pair <string, int> hole[100];
 bool isFailed = false;
+bool found = false;
 
 
 string int_to_str(int x)
@@ -45,26 +45,20 @@ void input()
 
 }
 
-int worstFit()
+int firstFit()
 {
+
     for(int i=0; i<requestNumber; i++)
     {
-        if(isFailed)
-        {
-            for(int i=0; i<holeNumber; i++)
-            {
-                totalFragmentation += hole[i].second;
-            }
-            return totalFragmentation;
-        }
-        int maxx = INT_MIN;
+
+        found = false;
         int index = -1;
         for(int j=0; j<holeNumber; j++)
         {
-            if(hole[j].second >= request[i] && hole[j].second>maxx)
+            if(hole[j].second >= request[i] && found == false)
             {
-                maxx = hole[j].second;
                 index = j;
+                found = true;
             }
         }
         if(index==-1)
@@ -73,6 +67,14 @@ int worstFit()
             printf("[-] %d is failed to serve\n",request[i]);
             printf("Quiting Simulation\n");
             printf("Calculating External Fragmentation\n");
+        }
+        if(isFailed)
+        {
+            for(int k=0; k<holeNumber; k++)
+            {
+                totalFragmentation += hole[k].second;
+            }
+            return totalFragmentation;
         }
         if(index != -1)
         {
@@ -111,7 +113,7 @@ int main()
 {
     input();
     initialBlockSize();
-    int externalFragmentation = worstFit();
+    int externalFragmentation = firstFit();
     printf("\nExternal Fragmentation: %d\n\n",externalFragmentation);
     remainingBlocks();
 
@@ -122,7 +124,6 @@ int main()
 
 /**
 input
-
 5
 50 200 70 115 15
 10
@@ -152,11 +153,11 @@ Memory Block            Size
 [+] 100 is served by Block 1
 Block 1 new size is : (200 - 100 = 100)
 =====================================
-[+] 10 is served by Block 3
-Block 3 new size is : (115 - 10 = 105)
+[+] 10 is served by Block 0
+Block 0 new size is : (50 - 10 = 40)
 =====================================
-[+] 35 is served by Block 3
-Block 3 new size is : (105 - 35 = 70)
+[+] 35 is served by Block 0
+Block 0 new size is : (40 - 35 = 5)
 =====================================
 [+] 15 is served by Block 1
 Block 1 new size is : (100 - 15 = 85)
@@ -164,32 +165,32 @@ Block 1 new size is : (100 - 15 = 85)
 [+] 23 is served by Block 1
 Block 1 new size is : (85 - 23 = 62)
 =====================================
-[+] 6 is served by Block 2
-Block 2 new size is : (70 - 6 = 64)
+[+] 6 is served by Block 1
+Block 1 new size is : (62 - 6 = 56)
 =====================================
-[+] 25 is served by Block 3
-Block 3 new size is : (70 - 25 = 45)
+[+] 25 is served by Block 1
+Block 1 new size is : (56 - 25 = 31)
 =====================================
 [+] 55 is served by Block 2
-Block 2 new size is : (64 - 55 = 9)
+Block 2 new size is : (70 - 55 = 15)
 =====================================
-[-] 88 is failed to serve
+[+] 88 is served by Block 3
+Block 3 new size is : (115 - 88 = 27)
+=====================================
+[-] 40 is failed to serve
 Quiting Simulation
 Calculating External Fragmentation
 
-External Fragmentation: 181
+External Fragmentation: 93
 
 Remaining Blocks Size :
 Memory Block            Size
- Block 0                 50
- Block 1                 62
- Block 2                 9
- Block 3                 45
+ Block 0                 5
+ Block 1                 31
+ Block 2                 15
+ Block 3                 27
  Block 4                 15
 
-Process returned 0 (0x0)   execution time : 15.011 s
+Process returned 0 (0x0)   execution time : 15.379 s
 Press any key to continue.
-
 **/
-
-
