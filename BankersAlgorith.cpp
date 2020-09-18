@@ -167,4 +167,33 @@ Available = (Total RESOURCE - Max Allocation)
 **/
 
 
+/**
+Another Input Output
+====================
+
+20 19 16
+7 9 5
+7
+1 1 1
+2 3 3
+3 0 5
+2 2 0
+3 1 0
+1 2 1
+1 1 1
+7 5 6
+5 8 5
+9 2 8
+8 8 6
+14 4 5
+4 6 3
+2 9 2
+The System is currently in safe state and
+The sequence is : P1 -> P2 -> P3 -> P4 -> P5 -> P6 -> P7 ->
+
+Process returned 0 (0x0)   execution time : 1.136 s
+Press any key to continue.
+**/
+
+
 
